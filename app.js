@@ -38,8 +38,14 @@ function artisanMarket(){
         money -= 20
         realWorldRespect += 20
         rennFaireRespect -= 40
+        checkIfGameOver();
+        if(isGameOver === true){
+            gameOver();
+        }
+        else{
         console.log("You head back towards the front of the festival,  \ngrabbing a couple goblets of Ye Olde Budwizer on the way.")
         playerChooseActivity();
+        }
     }
     
     //first stop in the artisan market
@@ -54,6 +60,7 @@ function artisanMarket(){
             continueThroughBazaar();
             dragonBoots();
         }
+
         else if (playerResponse == "n"){
             continueThroughBazaar();
             dragonBoots();
