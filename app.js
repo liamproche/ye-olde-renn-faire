@@ -12,31 +12,32 @@ let playerResponse
 let isGameOver = false;
 
 
-function checkIfGameOver(){
-    if(rennFaireRespect >= 100 || sobrietyLevel <= 0 || money <= 0){
-        isGameOver = true;
-    }
-}
 
-function gameOver(){
-    console.log("game over")
-}
 
-//Artisan market
+
+
+//Function to hold artisan market 
 function artisanMarket(){
+    
+    //advances players through market
     function continueThroughBazaar(){
         money -= 10;
         sobrietyLevel -= 10;
         console.log("You grab a kragen of beer and continue through the bazzar.")
     }
 
+    //exits artisan market
     function leaveBazaar(){
         sobrietyLevel -= 20
         money -= 20
+        
+        //stat checkpoint
         checkIfGameOver();
         if(isGameOver === true){
             gameOver();
         }
+        
+        //sends player back to main menu
         else{
         console.log("You head back towards the front of the festival,  \ngrabbing a couple goblets of Ye Olde Budwizer on the way.")
         playerChooseActivity();
@@ -113,6 +114,13 @@ function artisanMarket(){
 }
 
 
+//checks stats to determine if player met objectives (game checkpoints)
+function checkIfGameOver(){
+    if(rennFaireRespect >= 100 || sobrietyLevel <= 0 || money <= 0){
+        isGameOver = true;
+    }
+}
+
 //for incorrect player entrys
 function devilSpeak(){
     console.log("Be gone with ye devil speak!")
@@ -132,15 +140,24 @@ function checkStatus(){
     playerChooseActivity();
 }
 
+
+//displays player stats
 function displayStatus(){
     console.log(`Your level-of-sobriety is ${sobrietyLevel}%. \nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is ${rennFaireRespect}%. \nYour real-world respect level is ${realWorldRespect}%.`)
 }
 
-//exits the program on player request
+
+//display stats and exits the program on player request
 function exit(){
     console.log("Your final stats are:")
     displayStatus();
     console.log(`Fare thee well!`)
+}
+
+
+//executes when obejectives met
+function gameOver(){
+    console.log("game over")
 }
 
 
@@ -237,16 +254,18 @@ function pubCrawl(){
                 gameOver();
             }
             else{
-            console.log(`You decide "f-it" and join the scurvy lot.\nA man wearing a realy macaw on his shoulder offers you a "nipperkin from ye olde beer bong". Do you accept?`)
+            console.log(`You decide "f-it" and join the scurvy lot.\nA pirate approaches wearing a realy macaw on his shoulder. \nHe offers you a "Nipperkin from ye olde beer bong".\nDo you accept?`)
             playerResponds();
             if(playerResponse === 'y'){
                 rennFaireRespect += 20;
                 realWorldRespect -= 20;
                 sobrietyLevel -= 30;
                 console.log("player takes beer bong")
+                playerChooseActivity();
             }
             else if(playerResponse == 'n'){
                 console.log("player does not take beer bong")
+                playerChooseActivity();
             }
             else{
                 devilSpeak();
