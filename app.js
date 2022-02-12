@@ -240,6 +240,9 @@ function pubCrawl(){
             console.log(`You decide "f-it" and join the scurvy lot.\nA man wearing a realy macaw on his shoulder offers you a "nipperkin from ye olde beer bong". Do you accept?`)
             playerResponds();
             if(playerResponse === 'y'){
+                rennFaireRespect += 20;
+                realWorldRespect -= 20;
+                sobrietyLevel -= 30;
                 console.log("player takes beer bong")
             }
             else if(playerResponse == 'n'){
