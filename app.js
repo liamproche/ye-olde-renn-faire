@@ -87,7 +87,7 @@ function artisanMarket(){
 
         //Third stop in the artisan market
         function blackSmith(){
-            console.log(`You approach a man pretending to hammer a sheild over over a small camp fire. \nHe calls out: \n"Good 'morrow! Ye be needin' some weaponry then?"`)
+            console.log(`You approach a man pretending to hammer a sheild over over a small camp fire. \nHe calls out: "Good 'morrow! Ye be needin' some weaponry then?"`)
             playerResponds();
             if (playerResponse == "y"){
                 money -= 75
@@ -95,6 +95,7 @@ function artisanMarket(){
                 realWorldRespect -= 20
                 loot.push('Broadsword ("For Decorative Purposes Only")')
                 console.log("You bought the fake broadsword!")
+                leaveBazaar();
             }
             else if (playerResponse == "n"){
                 leaveBazaar();
@@ -154,7 +155,7 @@ function greetPlayer(){
 function playerChooseActivity(){
     displayActivities();
     let playerChoice = prompt(`Please make your selection: `);
-    activityChoice = playerChoice;
+    activityChoice = playerChoice;    
 }
 
 
