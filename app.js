@@ -11,42 +11,71 @@ let foes = []
 let activityChoice
 let playerResponse
 
+//Artisan market
+function artisanMarket(){
+    console.log(`You are surrounded by poorly trained actors in peasant garb literally hawking their wares. 
+    A woman dressed as a gypsy with a stick-on mole approaches you and asks if you want your tarot cards read.`)
+    playerResponds();
+    if (playerResponse == "y"){
+        console.log("yes")
+    }
+    else{
+        console.log("no")
+    }
+    playerChooseActivity();
+    goToActivity();
+}
 
+
+//for incorrect player entrys
 function devilSpeak(){
-    console.log("Be gone with your devil speak!")
+    console.log("Be gone with ye devil speak!")
     playerChooseActivity()
     goToActivity()
 }
 
+
+//displays main menu
 function displayActivities(){
-    console.log(`What what would you like to do? \nPress "1" for ${activities[0]} \nPress "2" for ${activities[1]} \nPress "3" for ${activities[2]} \nPress "4" to check your status \nPress "q" to quit.`)
+    console.log(`What what would you like to do? \nPress "1" for ${activities[0]} \nPress "2" for ${activities[1]} \nPress "3" for ${activities[2]} \nPress "4" to check your status \nPress "q" to quit`)
 }
 
-function exit(){
-    console.log("Fare thee well!")
-}
 
+
+//displays all of player's current status
 function checkStatus(){
     console.log(`Your health is ${health}%. \nYour level-of-sobriety is ${sobrietyLevel}%. \nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is ${rennFaireRespect}%. \nYour real-world respect level is ${realWorldRespect}%. \nYour current foes are: ${foes}`)
     playerChooseActivity();
     goToActivity();
 }
 
+
+//exits the program on player request
+function exit(){
+    console.log("Fare thee well!")
+}
+
+//greets player at beginning
 function greetPlayer(){
     console.log(`Welcome, ${username} to Ye Olde Rennaissance Faire!`)
 }
 
+//player chooses activity
 function playerChooseActivity(){
     displayActivities();
     let playerChoice = prompt(`Please make your selection: `);
     activityChoice = playerChoice;
 }
 
+
+//prompts player for input then stores result in variable
 function playerResponds(){
     let response = prompt('Type "y" or "n" to respond: ')
     playerResponse = response;
 }
 
+
+//when player chooses jousting tournament
 function joustingTournament(){
     console.log(`While entering the jousting arena you are approached by a grown man wearing pieces of a deconstructed garbage can as "armor". He informs you that one of the "knights" has taken ill and cannot compete. He asks if you would be willing to take his spot.`)
     playerResponds()
@@ -72,6 +101,8 @@ function joustingTournament(){
     }
 }
 
+
+//invokes activity of player choice
 function goToActivity(){
     if (activityChoice == 1){
         joustingTournament();
@@ -94,20 +125,24 @@ function goToActivity(){
 }
 
 
-function artisanMarket(){
-    console.log(`You chose ${activities[1]}`)
-    playerChooseActivity();
-    goToActivity();
-}
 
+
+//when player chooses pub crawl
 function pubCrawl(){
     console.log(`You chose ${activities[2]}`)
     playerChooseActivity();
     goToActivity();
 }
 
+//beginning of program
+
+//greets player
 greetPlayer()
+
+//puts player into main menu
 playerChooseActivity()
+
+//
 goToActivity()
 
 
