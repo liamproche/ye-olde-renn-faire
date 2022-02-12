@@ -1,6 +1,6 @@
 const prompt = require('prompt-sync')();
 const username = prompt('What is your name? ');
-const activities = ["Jousting Tournament", "Artisan Market", "Pub Crawl", "Archery Tournament"]
+const activities = ["Jousting Tournament", "Artisan Market", "Pub Crawl"]
 let health = 100
 let sobrietyLevel = 100
 let money = 250
@@ -14,14 +14,18 @@ let playerResponse
 
 function devilSpeak(){
     console.log("Be gone with your devil speak!")
+    playerChooseActivity()
+    goToActivity()
 }
 
 function displayActivities(){
-    console.log(`What what would you like to do? \nPress "1" for ${activities[0]} \nPress "2" for ${activities[1]} \nPress "3" for ${activities[2]} \nPress "4" for ${activities[3]} \nPress "5" to check your status`)
+    console.log(`What what would you like to do? \nPress "1" for ${activities[0]} \nPress "2" for ${activities[1]} \nPress "3" for ${activities[2]} \nPress "4" to check your status`)
 }
 
 function checkStatus(){
     console.log(`Your health is ${health}%. \nYour level-of-sobriety is ${sobrietyLevel}%. \nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is ${rennFaireRespect}%. \nYour real-world respect level is ${realWorldRespect}%. \nYour current foes are: ${foes}`)
+    playerChooseActivity();
+    goToActivity();
 }
 
 function greetPlayer(){
@@ -48,8 +52,8 @@ function joustingTournament(){
         rennFaireRespect += 30;
         realWorldRespect -= 30;
         console.log(`You accept the "knight's" challenge! (But not before slamming back a couple pints of mead to build your courage). You perform admirably and gain the respect of all in attendance even though you fall off your steed and sprain your back. Your significant other posts a photo of you on social media so your real-world-respect takes a hit. \nYour health decreases by 20%. \nYour sobriety-level decreases by 20%. \nYour renn-faire-respect-level increases by 30% \nYour real-world-respect-level is decreases by 30%`)
-        displayActivities();
         playerChooseActivity();
+        goToActivity();
     }
     else if (playerResponse === "n"){
         sobrietyLevel -=20;
@@ -57,6 +61,7 @@ function joustingTournament(){
         foes.push("Trash can knight")
         console.log(`You decline the "knight's" invite and while it's hard to understand him completely through his fake cockney-accent, it's clear you've made an enemy. To help ease your mind, you slam back a couple pints of mead to help ease your mind. \nYour sobriety-level is ${sobrietyLevel}, \nYour renn-faire-respect-level is ${rennFaireRespect}%`)
         playerChooseActivity();
+        goToActivity();
     }
     else{
         devilSpeak()
@@ -76,11 +81,7 @@ function goToActivity(){
         pubCrawl();
     }
     else if (activityChoice == 4){
-        archeryTournament();
-    }
-    else if (activityChoice == 5){
         checkStatus()
-        playerChooseActivity()
     }
     else{
         devilSpeak();
@@ -90,14 +91,14 @@ function goToActivity(){
 
 function artisanMarket(){
     console.log(`You chose ${activities[1]}`)
+    playerChooseActivity();
+    goToActivity();
 }
 
 function pubCrawl(){
     console.log(`You chose ${activities[2]}`)
-}
-
-function archeryTournament(){
-    console.log(`You chose ${activities[3]}`)
+    playerChooseActivity();
+    goToActivity();
 }
 
 greetPlayer()
