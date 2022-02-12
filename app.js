@@ -1,6 +1,7 @@
 const prompt = require('prompt-sync')();
 const username = prompt('What is your name? ');
 const activities = ["Jousting Tournament", "Artisan Market", "Pub Crawl"]
+
 let health = 100
 let sobrietyLevel = 100
 let money = 250
@@ -11,27 +12,34 @@ let foes = []
 let activityChoice
 let playerResponse
 
+
 //Artisan market
 function artisanMarket(){
     console.log(`You are surrounded by poorly trained actors in peasant garb literally hawking their wares. 
     A woman dressed as a gypsy with a stick-on mole approaches you and asks if you want your tarot cards read.`)
     playerResponds();
-    if (playerResponse == "y"){
-        console.log("yes")
+    if (playerResponse == "y"){     
+        console.log(readTarot());
+        playerChooseActivity();
+        goToActivity();
+    }
+       
+    else if (playerResponse == "n"){
+        console.log("no")
+        playerChooseActivity();
+        goToActivity();
     }
     else{
-        console.log("no")
+        devilSpeak();
     }
-    playerChooseActivity();
-    goToActivity();
 }
 
 
 //for incorrect player entrys
 function devilSpeak(){
     console.log("Be gone with ye devil speak!")
-    playerChooseActivity()
-    goToActivity()
+    playerChooseActivity();
+    goToActivity();
 }
 
 
@@ -39,7 +47,6 @@ function devilSpeak(){
 function displayActivities(){
     console.log(`What what would you like to do? \nPress "1" for ${activities[0]} \nPress "2" for ${activities[1]} \nPress "3" for ${activities[2]} \nPress "4" to check your status \nPress "q" to quit`)
 }
-
 
 
 //displays all of player's current status
@@ -55,10 +62,12 @@ function exit(){
     console.log("Fare thee well!")
 }
 
+
 //greets player at beginning
 function greetPlayer(){
     console.log(`Welcome, ${username} to Ye Olde Rennaissance Faire!`)
 }
+
 
 //player chooses activity
 function playerChooseActivity(){
@@ -126,12 +135,100 @@ function goToActivity(){
 
 
 
-
 //when player chooses pub crawl
 function pubCrawl(){
     console.log(`You chose ${activities[2]}`)
     playerChooseActivity();
     goToActivity();
+}
+
+
+//function for tarot card reading
+function readTarot(){
+    const tarotCards = [
+        "The Fool", 
+        "The Magician",
+        "The High Priestess",
+        "The Empress",
+        "The Emperor",
+        "The Hierophant",
+        "The Lovers",
+        "The Chariot",
+        "Justice",
+        "The Hermit",
+        "Wheel of Fortune",
+        "Strength",
+        "The Hanged Man",
+        "Death",
+        "Temperance",
+        "The Devil",
+        "The Tower",
+        "The Star",
+        "The Moon",
+        "The Sun",
+        "Judgement",
+        "The World",
+        "Ace of Cups",
+        "The Paige of Cups",
+        "The King of Cups",
+        "The Knight of Cups",
+        "The Queen of Cups",
+        "The II of Cups",
+        "The III of Cups",
+        "The IV of Cups",
+        "The V of Cups",
+        "The VI of Cups",
+        "The VII of Cups",
+        "The VIII of Cups",
+        "The IX of Cups",
+        "The X of Cups",
+        "Ace of Pentacles",
+        "The Paige of Pentacles",
+        "The King of Pentacles",
+        "The Knight of Pentacles",
+        "The Queen of Pentacles",
+        "The II of Pentacles",
+        "The III of Pentacles",
+        "The IV of Pentacles",
+        "The V of Pentacles",
+        "The VI of Pentacles",
+        "The VII of Pentacles",
+        "The VIII of Pentacles",
+        "The IX of Pentacles",
+        "The X of Pentacles",
+        "Ace of Wands",
+        "The Paige of Wands",
+        "The King of Wands",
+        "The Knight of Wands",
+        "The Queen of Wands",
+        "The II of Wands",
+        "The III of Wands",
+        "The IV of Wands",
+        "The V of Wands",
+        "The VI of Wands",
+        "The VII of Wands",
+        "The VIII of Wands",
+        "The IX of Wands",
+        "The X of Wands",
+        "Ace of Swords",
+        "The Paige of Swords",
+        "The King of Swords",
+        "The Knight of Swords",
+        "The Queen of Wands",
+        "The II of Swords",
+        "The III of Swords",
+        "The IV of Swords",
+        "The V of Swords",
+        "The VI of Swords",
+        "The VII of Swords",
+        "The VIII of Swords",
+        "The IX of Swords",
+        "The X of Swords"
+    ]
+    let playersFirstCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
+    let playersSecondCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
+    let playersThirdCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
+    return(`${playersFirstCard}, ${playersSecondCard}, ${playersThirdCard}`)
 }
 
 //beginning of program
@@ -142,9 +239,8 @@ greetPlayer()
 //puts player into main menu
 playerChooseActivity()
 
-//
+//takes player to first activity based on response
 goToActivity()
-
 
 
 
