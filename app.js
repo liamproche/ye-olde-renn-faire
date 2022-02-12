@@ -13,10 +13,6 @@ let isGameOver = false
 let reasonForEnd = ""
 
 
-
-
-
-
 //Function to hold artisan market 
 function artisanMarket(){
     
@@ -40,7 +36,7 @@ function artisanMarket(){
         
         //sends player back to main menu
         else{
-        console.log("You head back towards the front of the festival,  \ngrabbing a couple goblets of Ye Olde Budwizer on the way.")
+        console.log("You head back towards the front of the festival,\ngrabbing a couple goblets of Ye Olde Budwizer on the way.")
         playerChooseActivity();
         }
     }
@@ -53,7 +49,7 @@ function artisanMarket(){
             money -= 15;
             rennFaireRespect += 20;
             realWorldRespect -= 20;
-            console.log(`Your cards are ${readTarot()}.`);
+            console.log(`Your cards are: ${readTarot()}.`);
             continueThroughBazaar();
             dragonBoots();
         }
@@ -75,7 +71,7 @@ function artisanMarket(){
                     realWorldRespect -= 20;
                     money -= 35;
                     loot.push("Dragon boots")
-                    console.log("bought boots")
+                    console.log("You have purchased the dragon skin boots!")
                     continueThroughBazaar();
                     blackSmith();
                 }
@@ -117,17 +113,19 @@ function artisanMarket(){
 
 //checks stats to determine if player met objectives (game checkpoints)
 function checkIfGameOver(){
-    if(rennFaireRespect >= 100){
-        isGameOver = true;
-        reasonForEnd = "rennRespect";
-    }
-    else if(sobrietyLevel <= 0){
-        isGameOver = true;
-        reasonForEnd = "sobriety";
-    }
-    else if(money <= 0){
-        isGameOver = true;
-        reasonForEnd = "money";
+    if(rennFaireRespect >= 100 || sobrietyLevel <= 0 || money <= 0){
+        if(rennFaireRespect >= 100){
+            isGameOver = true;
+            reasonForEnd = "rennRespect";
+        }
+        else if(sobrietyLevel <= 0){
+            isGameOver = true;
+            reasonForEnd = "sobriety";
+        }
+        else{
+            isGameOver = true;
+            reasonForEnd = "money";
+        }
     }
 }
 
@@ -138,12 +136,6 @@ function devilSpeak(){
 }
 
 
-//displays main menu
-function displayActivities(){
-    console.log(`What what would you like to do? \nPress "1" for ${activities[0]} \nPress "2" for ${activities[1]} \nPress "3" for ${activities[2]} \nPress "4" to check your status \nPress "q" to quit`)
-}
-
-
 //displays all of player's current status
 function checkStatus(){
     displayStatus();
@@ -151,9 +143,31 @@ function checkStatus(){
 }
 
 
+//displays main menu
+function displayActivities(){
+    console.log(`What would you like to do? \nPress "1" for ${activities[0]} \nPress "2" for ${activities[1]} \nPress "3" for ${activities[2]} \nPress "4" to check your status \nPress "q" to quit`)
+}
+
+
+//prints game over message
+function displayGameOver(){
+    if(reasonForEnd === "rennRespect"){
+        console.log(`Congratulations!!!\nYou won!!!\nYour willingness to sacrafice dignity for renn-faire glory paid off.\nYou are approached by a talent scout for the festival.\nDo you quit your career to go on Renn-Faire tour?`)
+        displayStatus();
+    }
+    else if(reasonForEnd === "sobriety"){
+        console.log(`You are officially belligerant!!!\nYou get into an argument with a man about a goat \nand are escorted out of the festival.\nYou proceed to your car to sleep it off.`)
+        displayStatus();
+    }
+    else{
+        console.log(`You're broke!!!\nYour penchant for cheaply made wares and booze was immense.\nYou leave the fesitval feeling shameful `)
+        displayStatus();
+    }
+}
+
 //displays player stats
 function displayStatus(){
-    console.log(`Your level-of-sobriety is ${sobrietyLevel}%. \nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is ${rennFaireRespect}%. \nYour real-world respect level is ${realWorldRespect}%.`)
+    console.log(`Your sobriety level is: ${sobrietyLevel}%\nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is: ${rennFaireRespect}%.\nYour real-world respect level is: ${realWorldRespect}%`)
 }
 
 
@@ -167,8 +181,7 @@ function exit(){
 
 //executes when obejectives met
 function gameOver(){
-    console.log("game over")
-    console.log(reasonForEnd)
+    displayGameOver();
 }
 
 
@@ -231,7 +244,7 @@ function joustingTournament(){
         }    
         else{
             //do you win anything? 
-            console.log(`You accept the "knight's" challenge! \n(But not before slamming back a couple pints of mead to build your courage). \nYou perform admirably and gain the respect of all in attendance.`)
+            console.log(`You accept the "knight's" challenge! \nBut not before slamming back a couple pints of mead to build your courage.\nYou perform admirably and gain the respect of all in attendance.`)
             playerChooseActivity();
         }
     }
