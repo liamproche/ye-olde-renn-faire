@@ -19,7 +19,11 @@ function devilSpeak(){
 }
 
 function displayActivities(){
-    console.log(`What what would you like to do? \nPress "1" for ${activities[0]} \nPress "2" for ${activities[1]} \nPress "3" for ${activities[2]} \nPress "4" to check your status`)
+    console.log(`What what would you like to do? \nPress "1" for ${activities[0]} \nPress "2" for ${activities[1]} \nPress "3" for ${activities[2]} \nPress "4" to check your status \nPress "q" to quit.`)
+}
+
+function exit(){
+    console.log("Fare thee well!")
 }
 
 function checkStatus(){
@@ -68,8 +72,6 @@ function joustingTournament(){
     }
 }
 
-
-
 function goToActivity(){
     if (activityChoice == 1){
         joustingTournament();
@@ -82,6 +84,9 @@ function goToActivity(){
     }
     else if (activityChoice == 4){
         checkStatus()
+    }
+    else if (activityChoice == "q"){
+        exit();
     }
     else{
         devilSpeak();
