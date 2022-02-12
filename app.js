@@ -27,16 +27,12 @@ function artisanMarket(){
     function continueThroughBazaar(){
         money -= 10;
         sobrietyLevel -= 10;
-        rennFaireRespect -= 10;
-        realWorldRespect += 10;
         console.log("You grab a kragen of beer and continue through the bazzar.")
     }
 
     function leaveBazaar(){
         sobrietyLevel -= 20
         money -= 20
-        realWorldRespect += 20
-        rennFaireRespect -= 40
         checkIfGameOver();
         if(isGameOver === true){
             gameOver();
@@ -52,8 +48,8 @@ function artisanMarket(){
         console.log("You are surrounded by poorly trained actors in peasant garb. \nThey are literally hawking their wares. \nA woman dressed as a gypsy with a stick-on mole approaches. \nShe asks if you would like your tarot cards read.")
         playerResponds();
         if (playerResponse == "y"){     
-            money -= 5;
-            rennFaireRespect += 10;
+            money -= 15;
+            rennFaireRespect += 20;
             realWorldRespect -= 10;
             console.log(`Your cards are ${readTarot()}.`);
             continueThroughBazaar();
@@ -176,8 +172,8 @@ function joustingTournament(){
     playerResponds()
     if (playerResponse === "y"){
         sobrietyLevel -= 30;
-        rennFaireRespect += 80;
-        realWorldRespect -= 80;
+        rennFaireRespect += 30;
+        realWorldRespect -= 30;
         checkIfGameOver();
         if(isGameOver === true){
             gameOver();
@@ -224,11 +220,29 @@ function goToActivity(){
 }
 
 
-
 //when player chooses pub crawl
 function pubCrawl(){
-    console.log(`You chose ${activities[2]}`)
-    playerChooseActivity();
+    console.log(`You decide you're way too sober for the current situation.\nHoping to rectify this, you sign up for a pub crawl.\nUpon arriving at the start location you realize all the other participants\nare adults dressed in poorly sourced pirate costume. Do you proceed?`)
+    playerResponds()
+    if(playerResponse == "y"){
+        console.log("Really?")
+        playerResponds();
+        if(playerResponse == "y"){
+            console.log("The player really wants the pub crawl")
+        }
+        else if(playerResponse == "n"){
+            playerChooseActivity();
+        }
+        else{
+            devilSpeak();
+        }
+    }
+    else if(playerResponse == "n"){
+        playerChooseActivity();
+    }
+    else{
+        devilSpeak();
+    }    
 }
 
 
