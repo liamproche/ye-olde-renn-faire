@@ -7,7 +7,6 @@ let money = 250
 let loot = []
 let rennFaireRespect = 0
 let realWorldRespect = 100
-let foes = []
 let activityChoice
 let playerResponse
 let isGameOver = false;
@@ -138,7 +137,7 @@ function checkStatus(){
 }
 
 function displayStatus(){
-    console.log(`Your level-of-sobriety is ${sobrietyLevel}%. \nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is ${rennFaireRespect}%. \nYour real-world respect level is ${realWorldRespect}%. \nYour current foes are: ${foes}`)
+    console.log(`Your level-of-sobriety is ${sobrietyLevel}%. \nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is ${rennFaireRespect}%. \nYour real-world respect level is ${realWorldRespect}%.`)
 }
 
 //exits the program on player request
@@ -193,7 +192,6 @@ function joustingTournament(){
         sobrietyLevel -= 50;
         rennFaireRespect -= 65;
         realWorldRespect += 15;
-        foes.push("Trash can knight")
         console.log(`You decline the "knight's" invite. \nWhile it's hard to understand him completely through his fake cockney-accent, \nit's clear you've made an enemy. \nTo help ease your mind, you slam back a couple pints of mead.`)
         playerChooseActivity();
     }
