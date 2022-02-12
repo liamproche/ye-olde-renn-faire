@@ -5,7 +5,7 @@ const activities = ["Jousting Tournament", "Artisan Market", "Pub Crawl"]
 let sobrietyLevel = 100
 let money = 250
 let loot = []
-let rennFaireRespect = 20
+let rennFaireRespect = 0
 let realWorldRespect = 100
 let foes = []
 let activityChoice
@@ -38,7 +38,7 @@ function artisanMarket(){
         money -= 20
         realWorldRespect += 20
         rennFaireRespect -= 40
-        console.log("You decide you already have enough junk at home and don't need more. \nYou head back towards the front of the festival,  \ngrabbing a couple goblets of Ye Olde Budwizer on the way.")
+        console.log("You head back towards the front of the festival,  \ngrabbing a couple goblets of Ye Olde Budwizer on the way.")
         playerChooseActivity();
     }
     
@@ -115,7 +115,6 @@ function artisanMarket(){
 function devilSpeak(){
     console.log("Be gone with ye devil speak!")
     playerChooseActivity();
-    goToActivity();
 }
 
 
@@ -129,7 +128,6 @@ function displayActivities(){
 function checkStatus(){
     displayStatus();
     playerChooseActivity();
-    goToActivity();
 }
 
 function displayStatus(){
@@ -150,12 +148,12 @@ function greetPlayer(){
 }
 
 
-
 //player chooses activity
 function playerChooseActivity(){
     displayActivities();
     let playerChoice = prompt(`Please make your selection: `);
-    activityChoice = playerChoice;    
+    activityChoice = playerChoice;
+    goToActivity();    
 }
 
 
@@ -182,7 +180,6 @@ function joustingTournament(){
             //do you win anything? 
             console.log(`You accept the "knight's" challenge! \n(But not before slamming back a couple pints of mead to build your courage). \nYou perform admirably and gain the respect of all in attendance.`)
             playerChooseActivity();
-            goToActivity();
         }
     }
     else if (playerResponse === "n"){
@@ -192,7 +189,6 @@ function joustingTournament(){
         foes.push("Trash can knight")
         console.log(`You decline the "knight's" invite. \nWhile it's hard to understand him completely through his fake cockney-accent, \nit's clear you've made an enemy. \nTo help ease your mind, you slam back a couple pints of mead.`)
         playerChooseActivity();
-        goToActivity();
     }
     else{
         devilSpeak()
@@ -228,7 +224,6 @@ function goToActivity(){
 function pubCrawl(){
     console.log(`You chose ${activities[2]}`)
     playerChooseActivity();
-    goToActivity();
 }
 
 
@@ -327,6 +322,3 @@ greetPlayer()
 
 //puts player into main menu
 playerChooseActivity()
-
-//takes player to first activity based on response
-goToActivity()
