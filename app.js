@@ -228,7 +228,17 @@ function pubCrawl(){
         console.log("Really?")
         playerResponds();
         if(playerResponse == "y"){
-            console.log("The player really wants the pub crawl")
+            rennFaireRespect += 30;
+            realWorldRespect -= 30;
+            money -= 20;
+            sobrietyLevel -=65;
+            checkIfGameOver();
+            if(isGameOver === true){
+                gameOver();
+            }
+            else{
+            console.log(`You decide "f-it" and join the scurvy lot.\nThey ....(another pub crawl activity goes here)`)
+            }
         }
         else if(playerResponse == "n"){
             playerChooseActivity();
