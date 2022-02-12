@@ -115,15 +115,20 @@ function displayActivities(){
 
 //displays all of player's current status
 function checkStatus(){
-    console.log(`Your level-of-sobriety is ${sobrietyLevel}%. \nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is ${rennFaireRespect}%. \nYour real-world respect level is ${realWorldRespect}%. \nYour current foes are: ${foes}`)
+    displayStatus();
     playerChooseActivity();
     goToActivity();
 }
 
+function displayStatus(){
+    console.log(`Your level-of-sobriety is ${sobrietyLevel}%. \nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is ${rennFaireRespect}%. \nYour real-world respect level is ${realWorldRespect}%. \nYour current foes are: ${foes}`)
+}
 
 //exits the program on player request
 function exit(){
-    console.log("Fare thee well!")
+    console.log("Your final stats are:")
+    displayStatus();
+    console.log(`Fare thee well!`)
 }
 
 
@@ -131,6 +136,7 @@ function exit(){
 function greetPlayer(){
     console.log(`Welcome, ${username} to Ye Olde Rennaissance Faire!`)
 }
+
 
 
 //player chooses activity
@@ -307,13 +313,6 @@ playerChooseActivity()
 
 //takes player to first activity based on response
 goToActivity()
-
-
-
-
-
-
-
 
 
 
