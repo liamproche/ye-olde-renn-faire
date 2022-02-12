@@ -13,7 +13,7 @@ let isGameOver = false;
 
 
 function checkIfGameOver(){
-    if(rennFaireRespect >= 100){
+    if(rennFaireRespect >= 100 || sobrietyLevel <= 0 || money <= 0){
         isGameOver = true;
     }
 }
@@ -237,9 +237,19 @@ function pubCrawl(){
                 gameOver();
             }
             else{
-            console.log(`You decide "f-it" and join the scurvy lot.\nThey ....(another pub crawl activity goes here)`)
+            console.log(`You decide "f-it" and join the scurvy lot.\nA man wearing a realy macaw on his shoulder offers you a "nipperkin from ye olde beer bong". Do you accept?`)
+            playerResponds();
+            if(playerResponse === 'y'){
+                console.log("player takes beer bong")
+            }
+            else if(playerResponse == 'n'){
+                console.log("player does not take beer bong")
+            }
+            else{
+                devilSpeak();
             }
         }
+    }
         else if(playerResponse == "n"){
             playerChooseActivity();
         }
