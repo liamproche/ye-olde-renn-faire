@@ -2,7 +2,6 @@ const prompt = require('prompt-sync')();
 const username = prompt('What is your name? ');
 const activities = ["Jousting Tournament", "Artisan Market", "Pub Crawl"]
 
-let health = 100
 let sobrietyLevel = 100
 let money = 250
 let loot = []
@@ -15,23 +14,88 @@ let playerResponse
 
 //Artisan market
 function artisanMarket(){
-    console.log(`You are surrounded by poorly trained actors in peasant garb literally hawking their wares. 
-    A woman dressed as a gypsy with a stick-on mole approaches you and asks if you want your tarot cards read.`)
-    playerResponds();
-    if (playerResponse == "y"){     
-        console.log(readTarot());
+    function continueThroughBazaar(){
+        money -= 10;
+        sobrietyLevel -= 10;
+        rennFaireRespect -= 10;
+        realWorldRespect += 10;
+        console.log("You grab a kragen of beer and continue through the bazzar.")
+    }
+
+    function leaveBazaar(){
+        sobrietyLevel -= 20
+        money -= 20
+        realWorldRespect += 20
+        rennFaireRespect -= 40
+        console.log("You decide you already have enough junk at home and don't need more. \nYou head back towards the front of the festival,  \ngrabbing a couple goblets of Ye Olde Budwizer on the way.")
         playerChooseActivity();
-        goToActivity();
     }
-       
-    else if (playerResponse == "n"){
-        console.log("no")
-        playerChooseActivity();
-        goToActivity();
-    }
-    else{
-        devilSpeak();
-    }
+    
+    //first stop in the artisan market
+    function gypsyWoman(){
+        console.log("You are surrounded by poorly trained actors in peasant garb. \nThey are literally hawking their wares. \nA woman dressed as a gypsy with a stick-on mole approaches. \nShe asks if you would like your tarot cards read.")
+        playerResponds();
+        if (playerResponse == "y"){     
+            money -= 5;
+            rennFaireRespect += 10;
+            realWorldRespect -= 10;
+            console.log(`Your cards are ${readTarot()}.`);
+            continueThroughBazaar();
+            dragonBoots();
+        }
+        else if (playerResponse == "n"){
+            continueThroughBazaar();
+            dragonBoots();
+        }
+        else{
+            devilSpeak();
+        }
+        
+        //second stop in the artisan market
+        function dragonBoots(){
+            console.log(`You are approached by a man selling poorly stitched boots. \nHe claims they are "Made of the finest of dragon skin". \nDo you buy the boots?`)
+            playerResponds();
+                if(playerResponse == "y"){
+                    rennFaireRespect += 20;
+                    realWorldRespect -= 30;
+                    money -= 35;
+                    loot.push("Dragon boots")
+                    console.log("bought boots")
+                    continueThroughBazaar();
+                    blackSmith();
+                }
+                else if (playerResponse == "n"){
+                    continueThroughBazaar();
+                    blackSmith();
+                }
+                else{
+                    devilSpeak();
+                }
+            }    
+        }
+
+        //Third stop in the artisan market
+        function blackSmith(){
+            console.log(`You approach a man pretending to hammer a sheild over over a small camp fire. \nHe calls out: \n"Good 'morrow! Ye be needin' some weaponry then?"`)
+            playerResponds();
+            if (playerResponse == "y"){
+                money -= 75
+                rennFaireRespect += 30
+                realWorldRespect -= 20
+                loot.push('Broadsword ("For Decorative Purposes Only")')
+                console.log("You bought the fake broadsword!")
+            }
+            else if (playerResponse == "n"){
+                leaveBazaar();
+            }
+            else{
+                devilSpeak();
+            }
+        }
+    
+    
+    //calls first stop in artisan market
+    gypsyWoman();
 }
 
 
@@ -51,7 +115,7 @@ function displayActivities(){
 
 //displays all of player's current status
 function checkStatus(){
-    console.log(`Your health is ${health}%. \nYour level-of-sobriety is ${sobrietyLevel}%. \nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is ${rennFaireRespect}%. \nYour real-world respect level is ${realWorldRespect}%. \nYour current foes are: ${foes}`)
+    console.log(`Your level-of-sobriety is ${sobrietyLevel}%. \nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is ${rennFaireRespect}%. \nYour real-world respect level is ${realWorldRespect}%. \nYour current foes are: ${foes}`)
     playerChooseActivity();
     goToActivity();
 }
@@ -86,22 +150,24 @@ function playerResponds(){
 
 //when player chooses jousting tournament
 function joustingTournament(){
-    console.log(`While entering the jousting arena you are approached by a grown man wearing pieces of a deconstructed garbage can as "armor". He informs you that one of the "knights" has taken ill and cannot compete. He asks if you would be willing to take his spot.`)
+    console.log(`You enter the jousting arena. \nYou are approached by a grown man wearing pieces of a deconstructed garbage can. \nHe informs you that one of the "knights" has taken ill and cannot compete. \nHe asks if you would be willing to take his spot.`)
     playerResponds()
     if (playerResponse === "y"){
-        health -=20;
-        sobrietyLevel -= 20;
-        rennFaireRespect += 30;
-        realWorldRespect -= 30;
-        console.log(`You accept the "knight's" challenge! (But not before slamming back a couple pints of mead to build your courage). You perform admirably and gain the respect of all in attendance even though you fall off your steed and sprain your back. Your significant other posts a photo of you on social media so your real-world-respect takes a hit. \nYour health decreases by 20%. \nYour sobriety-level decreases by 20%. \nYour renn-faire-respect-level increases by 30% \nYour real-world-respect-level is decreases by 30%`)
+        sobrietyLevel -= 30;
+        rennFaireRespect += 80;
+        realWorldRespect -= 80;
+        
+        //do you win anything? 
+        console.log(`You accept the "knight's" challenge! \n(But not before slamming back a couple pints of mead to build your courage). \nYou perform admirably and gain the respect of all in attendance.`)
         playerChooseActivity();
         goToActivity();
     }
     else if (playerResponse === "n"){
-        sobrietyLevel -=20;
-        rennFaireRespect -=20;
+        sobrietyLevel -= 50;
+        rennFaireRespect -= 65;
+        realWorldRespect += 15;
         foes.push("Trash can knight")
-        console.log(`You decline the "knight's" invite and while it's hard to understand him completely through his fake cockney-accent, it's clear you've made an enemy. To help ease your mind, you slam back a couple pints of mead to help ease your mind. \nYour sobriety-level is ${sobrietyLevel}, \nYour renn-faire-respect-level is ${rennFaireRespect}%`)
+        console.log(`You decline the "knight's" invite. \nWhile it's hard to understand him completely through his fake cockney-accent, \nit's clear you've made an enemy. \nTo help ease your mind, you slam back a couple pints of mead.`)
         playerChooseActivity();
         goToActivity();
     }
@@ -228,7 +294,7 @@ function readTarot(){
     let playersFirstCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
     let playersSecondCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
     let playersThirdCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
-    return(`${playersFirstCard}, ${playersSecondCard}, ${playersThirdCard}`)
+    return(`${playersFirstCard}, ${playersSecondCard}, and ${playersThirdCard}`)
 }
 
 //beginning of program
