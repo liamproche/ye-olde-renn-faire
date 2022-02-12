@@ -9,7 +9,8 @@ let rennFaireRespect = 0
 let realWorldRespect = 100
 let activityChoice
 let playerResponse
-let isGameOver = false;
+let isGameOver = false
+let reasonForEnd = ""
 
 
 
@@ -51,7 +52,7 @@ function artisanMarket(){
         if (playerResponse == "y"){     
             money -= 15;
             rennFaireRespect += 20;
-            realWorldRespect -= 10;
+            realWorldRespect -= 20;
             console.log(`Your cards are ${readTarot()}.`);
             continueThroughBazaar();
             dragonBoots();
@@ -71,7 +72,7 @@ function artisanMarket(){
             playerResponds();
                 if(playerResponse == "y"){
                     rennFaireRespect += 20;
-                    realWorldRespect -= 30;
+                    realWorldRespect -= 20;
                     money -= 35;
                     loot.push("Dragon boots")
                     console.log("bought boots")
@@ -95,7 +96,7 @@ function artisanMarket(){
             if (playerResponse == "y"){
                 money -= 75
                 rennFaireRespect += 30
-                realWorldRespect -= 20
+                realWorldRespect -= 30
                 loot.push('Broadsword ("For Decorative Purposes Only")')
                 console.log("You bought the fake broadsword!")
                 leaveBazaar();
@@ -116,8 +117,17 @@ function artisanMarket(){
 
 //checks stats to determine if player met objectives (game checkpoints)
 function checkIfGameOver(){
-    if(rennFaireRespect >= 100 || sobrietyLevel <= 0 || money <= 0){
+    if(rennFaireRespect >= 100){
         isGameOver = true;
+        reasonForEnd = "rennRespect";
+    }
+    else if(sobrietyLevel <= 0){
+        isGameOver = true;
+        reasonForEnd = "sobriety";
+    }
+    else if(money <= 0){
+        isGameOver = true;
+        reasonForEnd = "money";
     }
 }
 
@@ -158,6 +168,30 @@ function exit(){
 //executes when obejectives met
 function gameOver(){
     console.log("game over")
+    console.log(reasonForEnd)
+}
+
+
+//invokes activity of player choice
+function goToActivity(){
+    if (activityChoice == 1){
+        joustingTournament();
+    } 
+    else if (activityChoice == 2){
+        artisanMarket();
+    }
+    else if (activityChoice == 3){
+        pubCrawl();
+    }
+    else if (activityChoice == 4){
+        checkStatus()
+    }
+    else if (activityChoice == "q"){
+        exit();
+    }
+    else{
+        devilSpeak();
+    }
 }
 
 
@@ -204,35 +238,12 @@ function joustingTournament(){
     else if (playerResponse === "n"){
         sobrietyLevel -= 50;
         rennFaireRespect -= 65;
-        realWorldRespect += 15;
+        realWorldRespect += 65;
         console.log(`You decline the "knight's" invite. \nWhile it's hard to understand him completely through his fake cockney-accent, \nit's clear you've made an enemy. \nTo help ease your mind, you slam back a couple pints of mead.`)
         playerChooseActivity();
     }
     else{
         devilSpeak()
-    }
-}
-
-
-//invokes activity of player choice
-function goToActivity(){
-    if (activityChoice == 1){
-        joustingTournament();
-    } 
-    else if (activityChoice == 2){
-        artisanMarket();
-    }
-    else if (activityChoice == 3){
-        pubCrawl();
-    }
-    else if (activityChoice == 4){
-        checkStatus()
-    }
-    else if (activityChoice == "q"){
-        exit();
-    }
-    else{
-        devilSpeak();
     }
 }
 
