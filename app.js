@@ -10,7 +10,18 @@ let realWorldRespect = 100
 let foes = []
 let activityChoice
 let playerResponse
+let isGameOver = false;
 
+
+function checkIfGameOver(){
+    if(rennFaireRespect >= 100){
+        isGameOver = true;
+    }
+}
+
+function gameOver(){
+    console.log("game over")
+}
 
 //Artisan market
 function artisanMarket(){
@@ -162,11 +173,16 @@ function joustingTournament(){
         sobrietyLevel -= 30;
         rennFaireRespect += 80;
         realWorldRespect -= 80;
-        
-        //do you win anything? 
-        console.log(`You accept the "knight's" challenge! \n(But not before slamming back a couple pints of mead to build your courage). \nYou perform admirably and gain the respect of all in attendance.`)
-        playerChooseActivity();
-        goToActivity();
+        checkIfGameOver();
+        if(isGameOver === true){
+            gameOver();
+        }    
+        else{
+            //do you win anything? 
+            console.log(`You accept the "knight's" challenge! \n(But not before slamming back a couple pints of mead to build your courage). \nYou perform admirably and gain the respect of all in attendance.`)
+            playerChooseActivity();
+            goToActivity();
+        }
     }
     else if (playerResponse === "n"){
         sobrietyLevel -= 50;
@@ -313,6 +329,3 @@ playerChooseActivity()
 
 //takes player to first activity based on response
 goToActivity()
-
-
-
