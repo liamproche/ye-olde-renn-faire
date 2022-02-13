@@ -153,7 +153,7 @@ function displayActivities(){
 function displayGameOver(){
     if(reasonForEnd === "rennRespect"){
         scoreCorretion();
-        console.log(`Congratulations!!!\nYou won!!! Your rennnaisance faire respect reached ${rennFaireRespect}!\nYour willingness to sacrafice dignity for renn-faire glory paid off.\nYou are approached by a talent scout for the festival.\nDo you quit your career to go on permanent Renn-Faire tour?`)
+        console.log(`Congratulations!!!\nYou won!!! Your rennnaisance faire respect reached ${rennFaireRespect}%!\nYour willingness to sacrafice personal dignity for renn-faire glory paid off.\nYou are approached by a talent scout for the festival.\nDo you quit your career to go on permanent Renn-Faire tour?`)
         playerResponds();
         if(playerResponse == "y"){
             scoreCorretion();
@@ -193,9 +193,13 @@ function displayGameOver(){
 //displays player stats
 function displayStatus(){
     scoreCorretion();
-    console.log(`Your sobriety level is: ${sobrietyLevel}%\nYou have $${money} left\nYou've accquired: ${loot} \nYour renn-faire respect level is: ${rennFaireRespect}%\nYour real-world respect level is: ${realWorldRespect}%`)
+    if(loot.length === 0){
+        console.log(`Your sobriety level is: ${sobrietyLevel}%\nYou have $${money} left\nYour Renn-Faire respect level is: ${rennFaireRespect}%\nYour Real-World respect level is: ${realWorldRespect}%`)
+    }
+    else{
+        console.log(`Your sobriety level is: ${sobrietyLevel}%\nYou have $${money} left\nYou've accquired: ${loot} \nYour Renn-Faire respect level is: ${rennFaireRespect}%\nYour Real-World respect level is: ${realWorldRespect}%`)
+    }
 }
-
 
 //display stats and exits the program on player request
 function exit(){
@@ -236,7 +240,7 @@ function goToActivity(){
 
 //greets player at beginning
 function greetPlayer(){
-    console.log(`Welcome, ${username} to Ye Olde Rennaissance Faire!`)
+    console.log(`Greetings, ${username}! Welcome to Ye Olde Rennaissance Faire!`)
 }
 
 
@@ -422,9 +426,7 @@ function readTarot(){
         },
         {
             name: "The Tower",
-            meaning: `With the Tower card, think of yourself as an agent of transformation. This self-sacrificing role is likely to create stressful situations. Your vision shows you that a radical change has already been unleashed by forces much larger than mere mortals, and therefore you are no longer resisting.
-
-            Now you may be at the forefront, acknowledging and accepting the bracing presence of the future bursting in on the present. Try to mediate the harsher parts of the changes as they unfold, so the most vulnerable are the most cushioned. Acknowledge yourself, as well as the others in your life, who are offering their resources to usher in a better future.`
+            meaning: `With the Tower card, think of yourself as an agent of transformation. This self-sacrificing role is likely to create stressful situations. Your vision shows you that a radical change has already been unleashed by forces much larger than mere mortals, and therefore you are no longer resisting. Now you may be at the forefront, acknowledging and accepting the bracing presence of the future bursting in on the present. Try to mediate the harsher parts of the changes as they unfold, so the most vulnerable are the most cushioned. Acknowledge yourself, as well as the others in your life, who are offering their resources to usher in a better future.`
         },
         {
             name: "The Star",
