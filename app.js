@@ -64,7 +64,7 @@ function artisanMarket(){
         
         //second stop in the artisan market
         function dragonBoots(){
-            console.log(`You are approached by a man selling poorly stitched boots. \nHe claims they are "Made of the finest of dragon skin". \nDo you buy the boots?`)
+            console.log(`You are approached by a man selling poorly stitched boots.\nHe claims they are "Made of the finest of dragon skin". \nDo you buy the boots?`)
             playerResponds();
                 if(playerResponse == "y"){
                     rennFaireRespect += 20;
@@ -152,8 +152,30 @@ function displayActivities(){
 //prints game over message
 function displayGameOver(){
     if(reasonForEnd === "rennRespect"){
-        console.log(`Congratulations!!!\nYou won!!!\nYour willingness to sacrafice dignity for renn-faire glory paid off.\nYou are approached by a talent scout for the festival.\nDo you quit your career to go on Renn-Faire tour?`)
-        displayStatus();
+        console.log(`Congratulations!!!\nYou won!!!\nYour willingness to sacrafice dignity for renn-faire glory paid off.\nYou are approached by a talent scout for the festival.\nDo you quit your career to go on permanent Renn-Faire tour?`)
+        playerResponds();
+        if(playerResponse == "y"){
+            console.log(`Are you sure? You only ${sobrietyLevel}% sober...`)
+            playerResponds();
+            if (playerResponse == "y"){
+                console.log(`Fare thee well then! Go forth and make merry!`)
+                displayStatus();
+            }
+            else if(playerResponse == "n"){
+                console.log(`That's probably a wise choice considering you're only ${sobrietyLevel} sober.`)
+                displayStatus();
+            }
+            else{
+                devilSpeak();
+            }
+        }
+        else if(playerResponse == "n"){
+            console.log(`That's probably a wise choice considering you're only ${sobrietyLevel} sober.`)
+            displayStatus();
+        }
+        else{
+            devilSpeak();
+        }
     }
     else if(reasonForEnd === "sobriety"){
         console.log(`You are officially belligerant!!!\nYou get into an argument with a man about a goat.\nA person dressed as a troll escorts you off the premises.\nYou proceed to your car to sleep it off.`)
@@ -652,7 +674,7 @@ function readTarot(){
     ]
     
         playersFirstCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
-        return(`You got ${playersFirstCard.name} in the advice position: ${playersFirstCard.meaning}\n*Descriptions from tarot.com`)
+        return(`You got ${playersFirstCard.name} in the advice position: ${playersFirstCard.meaning}\n*Card descriptions from tarot.com`)
 
 }
  console.log(readTarot())
