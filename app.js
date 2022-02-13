@@ -16,6 +16,7 @@ let reasonForEnd
 //Function to hold artisan market 
 function artisanMarket(){
     
+
     //advances players through market
     function continueThroughBazaar(){
         money -= 10;
@@ -23,17 +24,20 @@ function artisanMarket(){
         console.log("You grab a kragen of beer and continue through the bazzar.")
     }
 
+
     //exits artisan market
     function leaveBazaar(){
         sobrietyLevel -= 20
         money -= 20
         
+
         //stat checkpoint
         checkIfGameOver();
         if(isGameOver === true){
             gameOver();
         }
         
+
         //sends player back to main menu
         else{
         console.log("You head back towards the front of the festival,\ngrabbing a couple goblets of Ye Olde Budwizer on the way.")
@@ -41,6 +45,7 @@ function artisanMarket(){
         }
     }
     
+
     //first stop in the artisan market
     function gypsyWoman(){
         console.log("You are surrounded by poorly trained actors in peasant garb. \nThey are literally hawking their wares. \nA woman dressed as a gypsy with a stick-on mole approaches. \nShe asks if you would like your tarot cards read.")
@@ -53,7 +58,6 @@ function artisanMarket(){
             continueThroughBazaar();
             dragonBoots();
         }
-
         else if (playerResponse == "n"){
             continueThroughBazaar();
             dragonBoots();
@@ -62,6 +66,7 @@ function artisanMarket(){
             devilSpeak();
         }
         
+
         //second stop in the artisan market
         function dragonBoots(){
             console.log(`You are approached by a man selling poorly stitched boots.\nHe claims they are "Made of the finest of dragon skin". \nDo you buy the boots?`)
@@ -129,6 +134,7 @@ function checkIfGameOver(){
     }
 }
 
+
 //for incorrect player entrys
 function devilSpeak(){
     console.log("Be gone with ye devil speak!")
@@ -149,7 +155,7 @@ function displayActivities(){
 }
 
 
-//prints game over message
+//sets ultimate decision point for winning player / displays messages for other scenrios
 function displayGameOver(){
     if(reasonForEnd === "rennRespect"){
         scoreCorretion();
@@ -190,6 +196,7 @@ function displayGameOver(){
     }
 }
 
+
 //displays player stats
 function displayStatus(){
     scoreCorretion();
@@ -201,6 +208,7 @@ function displayStatus(){
     }
 }
 
+
 //display stats and exits the program on player request
 function exit(){
     console.log("Your final stats are:")
@@ -210,6 +218,7 @@ function exit(){
 
 
 //executes when obejectives met
+///////This function just calls another function----fix this!
 function gameOver(){
     displayGameOver();
 }
@@ -260,6 +269,8 @@ function playerResponds(){
 }
 
 
+
+//prints flag for beginning of jousting tournament
 function printFlag(){
     let row = ">>"
      for(let i = 0; i < 4; i++){
@@ -358,6 +369,7 @@ function pubCrawl(){
 
 
 //function for tarot card reading
+//This text clean-up will suck.
 function readTarot(){
     const tarotCards = [
         {
@@ -682,7 +694,9 @@ function readTarot(){
 }
 
 
- function scoreCorretion(){
+//cheat function envoked before display stats to make sure percentages don't display out of range
+//need fix if game ends for win with sobriety level at 0
+function scoreCorretion(){
     if(rennFaireRespect < 0){
         rennFaireRespect = 0;
     }
