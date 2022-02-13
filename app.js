@@ -228,7 +228,7 @@ function goToActivity(){
 
 //greets player at beginning
 function greetPlayer(){
-    console.log("Welcome, ${username} to Ye Olde Rennaissance Faire!")
+    console.log(`Welcome, ${username} to Ye Olde Rennaissance Faire!`)
 }
 
 
@@ -250,7 +250,7 @@ function playerResponds(){
 
 //when player chooses jousting tournament
 function joustingTournament(){
-    console.log(`You enter the jousting arena. \nYou are approached by a grown man wearing pieces of a deconstructed garbage can. \nHe informs you that one of the "knights" has taken ill and cannot compete. \nHe asks if you would be willing to take his spot.`)
+    console.log(`You enter the jousting arena.\nYou are approached by a grown man wearing pieces of a deconstructed garbage can. \nHe informs you that one of the "knights" has taken ill and cannot compete. \nHe asks if you would be willing to take his spot.`)
     playerResponds()
     if (playerResponse === "y"){
         sobrietyLevel -= 30;
@@ -281,7 +281,7 @@ function joustingTournament(){
 
 //when player chooses pub crawl
 function pubCrawl(){
-    console.log(`You decide you're way too sober for the current situation.\nHoping to rectify this, you sign up for a pub crawl.\nUpon arriving at the start location you realize all the other participants\nare adults dressed in poorly sourced pirate costume. Do you proceed?`)
+    console.log(`You decide you're way too sober for the current situation.\nHoping to rectify this, you sign up for a pub crawl.\nUpon arriving at the start location you realize all the other participants\nare adults dressed in poorly sourced pirate costumes. Do you proceed?`)
     playerResponds()
     if(playerResponse == "y"){
         console.log("Really?")
