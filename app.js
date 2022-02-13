@@ -10,7 +10,7 @@ let realWorldRespect = 100
 let activityChoice
 let playerResponse
 let isGameOver = false
-let reasonForEnd = ""
+let reasonForEnd
 
 
 //Function to hold artisan market 
@@ -145,7 +145,7 @@ function checkStatus(){
 
 //displays main menu
 function displayActivities(){
-    console.log(`What would you like to do? \nPress "1" for ${activities[0]} \nPress "2" for ${activities[1]} \nPress "3" for ${activities[2]} \nPress "4" to check your status \nPress "q" to quit`)
+    console.log(`What would you like to do? \nPress "1" for ${activities[0]} \nPress "2" for ${activities[1]} \nPress "3" for ${activities[2]} \nPress "4" to Check your Status \nPress "q" to quit`)
 }
 
 
@@ -156,7 +156,7 @@ function displayGameOver(){
         displayStatus();
     }
     else if(reasonForEnd === "sobriety"){
-        console.log(`You are officially belligerant!!!\nYou get into an argument with a man about a goat \nand are escorted out of the festival.\nYou proceed to your car to sleep it off.`)
+        console.log(`You are officially belligerant!!!\nYou get into an argument with a man about a goat.\nA person dressed as a troll escorts you off the premises.\nYou proceed to your car to sleep it off.`)
         displayStatus();
     }
     else{
@@ -167,7 +167,25 @@ function displayGameOver(){
 
 //displays player stats
 function displayStatus(){
-    console.log(`Your sobriety level is: ${sobrietyLevel}%\nYou have $${money} left. \nYou've accquired: ${loot} \nYour renn-faire respect level is: ${rennFaireRespect}%.\nYour real-world respect level is: ${realWorldRespect}%`)
+    if(rennFaireRespect < 0){
+        rennFaireRespect = 0;
+    }
+    else if(rennFaireRespect > 100){
+        rennFaireRespect = 100;
+    }
+    if(money < 0){
+        money = 0;
+    }
+    if(sobrietyLevel < 0){
+        sobrietyLevel = 0;
+    }
+    else if(sobrietyLevel > 100){
+        sobrietyLevel = 100;
+    }
+    if(realWorldRespect < 0){
+        realWorldRespect = 0;
+    }
+    console.log(`Your sobriety level is: ${sobrietyLevel}%\nYou have $${money} left\nYou've accquired: ${loot} \nYour renn-faire respect level is: ${rennFaireRespect}%\nYour real-world respect level is: ${realWorldRespect}%`)
 }
 
 
@@ -210,7 +228,7 @@ function goToActivity(){
 
 //greets player at beginning
 function greetPlayer(){
-    console.log(`Welcome, ${username} to Ye Olde Rennaissance Faire!`)
+    console.log("Welcome, ${username} to Ye Olde Rennaissance Faire!")
 }
 
 
@@ -394,11 +412,13 @@ function readTarot(){
         "The IX of Swords",
         "The X of Swords"
     ]
-    let playersFirstCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
-    let playersSecondCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
-    let playersThirdCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
-    return(`${playersFirstCard}, ${playersSecondCard}, and ${playersThirdCard}`)
+    
+        playersFirstCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
+        playersSecondCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
+        playersThirdCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
+    return(`${playersFirstCard}, ${playersSecondCard}, ${playersThirdCard}`) 
 }
+
 
 //beginning of program
 
