@@ -652,7 +652,8 @@ function readTarot(){
     ]
     
         playersFirstCard = tarotCards[Math.floor(Math.random() * tarotCards.length)]
-        return(`You got ${playersFirstCard.name} in the advice position: ${playersFirstCard.meaning}`)
+        return(`You got ${playersFirstCard.name} in the advice position: ${playersFirstCard.meaning}\n*Descriptions from tarot.com`)
+
 }
  console.log(readTarot())
 
