@@ -152,9 +152,11 @@ function displayActivities(){
 //prints game over message
 function displayGameOver(){
     if(reasonForEnd === "rennRespect"){
-        console.log(`Congratulations!!!\nYou won!!!\nYour willingness to sacrafice dignity for renn-faire glory paid off.\nYou are approached by a talent scout for the festival.\nDo you quit your career to go on permanent Renn-Faire tour?`)
+        scoreCorretion();
+        console.log(`Congratulations!!!\nYou won!!! Your rennnaisance faire respect reached ${rennFaireRespect}!\nYour willingness to sacrafice dignity for renn-faire glory paid off.\nYou are approached by a talent scout for the festival.\nDo you quit your career to go on permanent Renn-Faire tour?`)
         playerResponds();
         if(playerResponse == "y"){
+            scoreCorretion();
             console.log(`Are you sure? You only ${sobrietyLevel}% sober...`)
             playerResponds();
             if (playerResponse == "y"){
@@ -162,6 +164,7 @@ function displayGameOver(){
                 displayStatus();
             }
             else if(playerResponse == "n"){
+                scoreCorretion();
                 console.log(`That's probably a wise choice considering you're only ${sobrietyLevel} sober.`)
                 displayStatus();
             }
@@ -170,7 +173,7 @@ function displayGameOver(){
             }
         }
         else if(playerResponse == "n"){
-            console.log(`That's probably a wise choice considering you're only ${sobrietyLevel} sober.`)
+            console.log(`That's probably a wise choice considering you're only ${sobrietyLevel}% sober.`)
             displayStatus();
         }
         else{
@@ -189,24 +192,7 @@ function displayGameOver(){
 
 //displays player stats
 function displayStatus(){
-    if(rennFaireRespect < 0){
-        rennFaireRespect = 0;
-    }
-    else if(rennFaireRespect > 100){
-        rennFaireRespect = 100;
-    }
-    if(money < 0){
-        money = 0;
-    }
-    if(sobrietyLevel < 0){
-        sobrietyLevel = 0;
-    }
-    else if(sobrietyLevel > 100){
-        sobrietyLevel = 100;
-    }
-    if(realWorldRespect < 0){
-        realWorldRespect = 0;
-    }
+    scoreCorretion();
     console.log(`Your sobriety level is: ${sobrietyLevel}%\nYou have $${money} left\nYou've accquired: ${loot} \nYour renn-faire respect level is: ${rennFaireRespect}%\nYour real-world respect level is: ${realWorldRespect}%`)
 }
 
@@ -318,7 +304,7 @@ function pubCrawl(){
                 gameOver();
             }
             else{
-            console.log(`You decide "f-it" and join the scurvy lot.\nA pirate approaches wearing a realy macaw on his shoulder. \nHe offers you a "Nipperkin from ye olde beer bong".\nDo you accept?`)
+            console.log(`Ok....\nYou decide "f-it" and join the scurvy lot.\nA pirate approaches wearing a real macaw on his shoulder. \nHe offers you a "Nipperkin from ye olde beer bong".\nDo you accept?`)
             playerResponds();
             if(playerResponse === 'y'){
                 rennFaireRespect += 20;
@@ -680,9 +666,30 @@ function readTarot(){
  console.log(readTarot())
 
 
-//beginning of program
+ function scoreCorretion(){
+    if(rennFaireRespect < 0){
+        rennFaireRespect = 0;
+    }
+    else if(rennFaireRespect > 100){
+        rennFaireRespect = 100;
+    }
+    if(money < 0){
+        money = 0;
+    }
+    if(sobrietyLevel < 0){
+        sobrietyLevel = 0;
+    }
+    else if(sobrietyLevel > 100){
+        sobrietyLevel = 100;
+    }
+    if(realWorldRespect < 0){
+        realWorldRespect = 0;
+    }
+ }
 
-//greets player
+
+
+//beginning of program
 greetPlayer()
 
 //puts player into main menu
