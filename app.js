@@ -256,8 +256,23 @@ function playerResponds(){
 }
 
 
+function printFlag(){
+    let row = ">>"
+     for(let i = 0; i < 4; i++){
+     console.log(row)
+     row = row + ">>";
+     }
+     console.log(">>>>>>>>>>>>")
+     for(let i = 4; i > 0; i--){
+         console.log(row)
+         row = row.slice(0, -2)
+     }
+ }
+ 
+
 //when player chooses jousting tournament
 function joustingTournament(){
+    printFlag()
     console.log(`You enter the jousting arena.\nYou are approached by a grown man wearing pieces of a deconstructed garbage can. \nHe informs you that one of the "knights" has taken ill and cannot compete. \nHe asks if you would be willing to take his spot.`)
     playerResponds()
     if (playerResponse === "y"){
@@ -497,7 +512,7 @@ function readTarot(){
         },
         {
             name: "The King of Coins",
-            meanging: `The King of Coins in this position advises you to behave as if you already were a success. Project confidence that your plans and goals are in the process of unfolding perfectly. Make your moves with authority and trust in your actions without waiting for acknowledgment or approval. Soon enough you will receive blessing after blessing. If you can learn to feel that kind of confidence in your body and get comfortable with it as your natural state, you will attract the support you desire.`
+            meaning: `The King of Coins in this position advises you to behave as if you already were a success. Project confidence that your plans and goals are in the process of unfolding perfectly. Make your moves with authority and trust in your actions without waiting for acknowledgment or approval. Soon enough you will receive blessing after blessing. If you can learn to feel that kind of confidence in your body and get comfortable with it as your natural state, you will attract the support you desire.`
         },
         {
             name: "The Knight of Coins",
@@ -505,7 +520,7 @@ function readTarot(){
         },
         {
             name: "The Queen of Coins",
-            meanging: `The Queen of Coins in this position advises you to trust the forces that have taken care of you up to this point. Continue to express your truth without worrying that you are going to lose the roof over your head or the bed you sleep in. It is your destiny to be safe and sound at this time in your life. Proceed with confidence and do what you so strongly feel must be done. Since the Queen of Coins is often the person with the best intuition in the crowd, you may feel at first as if you are going against the grain, only to later find yourself becoming the leader of a new trend.`
+            meaning: `The Queen of Coins in this position advises you to trust the forces that have taken care of you up to this point. Continue to express your truth without worrying that you are going to lose the roof over your head or the bed you sleep in. It is your destiny to be safe and sound at this time in your life. Proceed with confidence and do what you so strongly feel must be done. Since the Queen of Coins is often the person with the best intuition in the crowd, you may feel at first as if you are going against the grain, only to later find yourself becoming the leader of a new trend.`
         },
         { 
             name: "The Two of Coins",
@@ -663,7 +678,6 @@ function readTarot(){
         return(`You got ${playersFirstCard.name} in the advice position: ${playersFirstCard.meaning}\n*Card descriptions from tarot.com`)
 
 }
- console.log(readTarot())
 
 
  function scoreCorretion(){
@@ -684,6 +698,9 @@ function readTarot(){
     }
     if(realWorldRespect < 0){
         realWorldRespect = 0;
+    }
+    else if(realWorldRespect > 100){
+        realWorldRespect = 100;
     }
  }
 
